@@ -17,6 +17,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicApp(
       title: 'TripNGo',
+      themeMode: ThemeMode.light, //or dark / system
+      darkTheme: NeumorphicThemeData(
+        baseColor: Color(0xff333333),
+        accentColor: Colors.green,
+        lightSource: LightSource.topLeft,
+        depth: 4,
+        intensity: 0.3,
+      ),
+      theme: NeumorphicThemeData(
+        baseColor: Color(0xffDDDDDD),
+        accentColor: Colors.cyan,
+        lightSource: LightSource.topLeft,
+        depth: 6,
+        intensity: 0.5,
+      ),
+
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -33,16 +49,17 @@ class MyHomePage extends StatefulWidget {
 class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   int _index;
   LiquidController liquidController;
-  AnimationController animController;
-  Animation curvedAnim, colorAnim, colorAnim2;
+  AnimationController animController, botAnimCont;
+  Animation curvedAnim, colorAnim, colorAnim2, botAnim;
   @override
   void initState() {
     super.initState();
-    _index = 0;
+    _index = 1;
     liquidController = new LiquidController();
     animController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 200));
-
+    botAnim = ColorTween(begin: Colors.deepPurple[200], end: Colors.white)
+        .animate(botAnimCont);
     curvedAnim =
         new CurvedAnimation(parent: animController, curve: Curves.easeIn);
     colorAnim = ColorTween(begin: Colors.deepPurple[200], end: Colors.white)
@@ -98,8 +115,10 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
         disableUserGesture: false,
         pages: buildPages(context),
         enableLoop: true,
+        initialPage: 1,
         liquidController: liquidController,
         onPageChangeCallback: (activePageIndex) {
+          _index = activePageIndex;
           animController.reset();
           animController.forward();
         },
@@ -109,32 +128,36 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
           }
         },
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.deepPurple[400],
-        backgroundColor: Colors.white,
-        // these are place holders
-        items: [
-          Icon(
-            Icons.airport_shuttle,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.people,
-            size: 30,
-            color: Colors.white,
-          ),
-        ],
-        onTap: (index) {
-          _index = index;
-          animController.reset();
-          liquidController.animateToPage(page: _index, duration: 200);
-        },
+      bottomNavigationBar: AnimatedBuilder(
+        animation: colorAnim,
+        builder: (context, _) => CurvedNavigationBar(
+          color: Colors.deepPurple[400],
+          backgroundColor: colorAnim.value,
+          // these are place holders
+          index: _index,
+          items: [
+            Icon(
+              Icons.airport_shuttle,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.home,
+              size: 30,
+              color: Colors.white,
+            ),
+            Icon(
+              Icons.people,
+              size: 30,
+              color: Colors.white,
+            ),
+          ],
+          onTap: (index) {
+            _index = index;
+            animController.reset();
+            liquidController.animateToPage(page: _index, duration: 200);
+          },
+        ),
       ),
     );
   }

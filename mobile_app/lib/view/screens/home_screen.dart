@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/main.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
 
+import '../../constants.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -73,42 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         width: screenSize.width * 0.85,
       ),
-    );
-  }
-
-  NeumorphicStyle getNeuStyle() {
-    return NeumorphicStyle(
-      shape: NeumorphicShape.concave,
-      color: Colors.white,
-      boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-      depth: 5,
-      lightSource: LightSource.topLeft,
-      intensity: 0.24,
-      surfaceIntensity: 0.23,
-    );
-  }
-
-  NeumorphicStyle getImgNeuStyle() {
-    return NeumorphicStyle(
-      shape: NeumorphicShape.concave,
-      color: Colors.white,
-      boxShape: NeumorphicBoxShape.circle(),
-      depth: 5,
-      lightSource: LightSource.topLeft,
-      intensity: 0.24,
-      surfaceIntensity: 0.23,
-    );
-  }
-
-  NeumorphicStyle getTxtNeuStyle() {
-    return NeumorphicStyle(
-      shape: NeumorphicShape.concave,
-      color: Colors.grey[800],
-      boxShape: NeumorphicBoxShape.circle(),
-      depth: 12,
-      lightSource: LightSource.topLeft,
-      intensity: 0.83,
-      surfaceIntensity: 0.83,
     );
   }
 }

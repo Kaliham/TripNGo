@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/constants.dart';
+import 'package:neumorphic/neumorphic.dart';
 
 class TripsScreen extends StatefulWidget {
   @override
@@ -12,19 +14,37 @@ class _TripsScreenState extends State<TripsScreen> {
     return Container(
       child: ListView(
         children: [
-          Text('1'),
-          Text('1'),
-          Text('1'),
-          Text('1'),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.85,
-            height: 200,
-            child: Neumorphic(child: Center(child: Text('hello'))),
-          ),
-          Text('1ddfsasdfsdfasdfadfasfasfdfasdfasdfasdddsdfasdfasdfasdfs'),
-          Text('1 dafsdfasd sdfasd ad sdfasd asdf sd'),
-          Text('1'),
+          buildListItem(context, "League Stearms"),
+          buildListItem(context, "League Stearms"),
+          buildListItem(context, "League Stearms"),
+          buildListItem(context, "League Stearms"),
         ],
+      ),
+    );
+  }
+
+  Widget buildListItem(BuildContext context, info) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      child: NeuCard(
+        decoration: NeumorphicDecoration(
+            borderRadius: BorderRadius.circular(20), color: Colors.white60),
+        curveType: CurveType.convex,
+        color: Colors.grey,
+        bevel: 12,
+        child: Container(
+          width: 200,
+          height: 100,
+          child: Center(
+            child: Text(
+              info,
+              style: GoogleFonts.raleway(
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
