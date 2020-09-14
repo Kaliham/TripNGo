@@ -1,12 +1,22 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-
+import 'package:flutter/material.dart';
 import '../../constants.dart';
 
-class NeumorphicTextfield extends StatelessWidget {
+// ignore: must_be_immutable
+class NeumorphicTextfield extends StatefulWidget {
   var _hintText;
-  NeumorphicTextfield({hintText}) {
+
+  TextInputType _textType;
+  NeumorphicTextfield({hintText, TextInputType dataType: TextInputType.text}) {
     this._hintText = hintText;
+    this._textType = dataType;
   }
+
+  @override
+  _NeumorphicTextfieldState createState() => _NeumorphicTextfieldState();
+}
+
+class _NeumorphicTextfieldState extends State<NeumorphicTextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,12 +25,16 @@ class NeumorphicTextfield extends StatelessWidget {
         style: getlistItemNeuStyle(),
         child: Container(
           width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 1, 8, 1),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: _hintText,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              child: TextField(
+                keyboardType: widget._textType,
+                cursorColor: Colors.deepPurple,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: widget._hintText,
+                ),
               ),
             ),
           ),
@@ -33,9 +47,14 @@ class NeumorphicTextfield extends StatelessWidget {
 class NeumorphicSearchbar extends StatefulWidget {
   var _hintText;
   Function _fnc;
-  NeumorphicSearchbar({hintText, Function function}) {
+  TextInputType _textType;
+  NeumorphicSearchbar(
+      {hintText,
+      Function function,
+      TextInputType dataType: TextInputType.text}) {
     this._hintText = hintText;
     this._fnc = function;
+    this._textType = dataType;
   }
 
   @override
@@ -56,8 +75,9 @@ class _NeumorphicSearchbarState extends State<NeumorphicSearchbar> {
               Flexible(
                 flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 1, 8, 1),
+                  padding: const EdgeInsets.fromLTRB(24, 1, 8, 1),
                   child: TextField(
+                    keyboardType: widget._textType,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: widget._hintText,

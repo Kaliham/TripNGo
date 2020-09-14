@@ -84,25 +84,6 @@ class _TripsScreenState extends State<TripsScreen>
     );
   }
 
-  Widget _buildTags(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(20, 1, 1, 1),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTag(context, "Information"),
-            _buildTag(context, "Information"),
-            _buildTag(context, "Information"),
-            _buildTag(context, "Information"),
-            _buildTag(context, "Information"),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildTag(BuildContext context, info) {
     return FittedBox(
       child: NeumorphicButton(
@@ -145,40 +126,138 @@ class _TripsScreenState extends State<TripsScreen>
   Widget _buildFilterContent(context) {
     return Column(
       children: [
-        Center(
-          child: Text('he'),
+        Container(
+          margin: EdgeInsets.fromLTRB(5, 5, 5, 15),
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: NeumorphicBackButton(
+                  style: getCircBtnNeuStyle(),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  padding: EdgeInsets.fromLTRB(2, 10, 3, 10),
+                ),
+              ),
+              Flexible(
+                flex: 2,
+                fit: FlexFit.tight,
+                child: Text(''),
+              ),
+              Flexible(
+                flex: 3,
+                fit: FlexFit.tight,
+                child: Text(''),
+              )
+            ],
+          ),
         ),
-        Center(
-          child: Text('he'),
+        Container(
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 8,
+                fit: FlexFit.tight,
+                child: Material(
+                  color: Colors.transparent,
+                  child: SizedBox(
+                    height: 100,
+                    child: NeumorphicTextfield(
+                      hintText: 'Enter Lower Price...',
+                      dataType: TextInputType.number,
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'JD',
+                    style: GoogleFonts.raleway(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      textBaseline: TextBaseline.ideographic,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        Center(
-          child: Text('he'),
+        Container(
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(),
+              ),
+              Flexible(
+                flex: 8,
+                fit: FlexFit.tight,
+                child: SizedBox(
+                  height: 100,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: SizedBox(
+                      height: 100,
+                      child: NeumorphicTextfield(
+                        hintText: 'Enter Upper Price...',
+                        dataType: TextInputType.number,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'JD',
+                    style: GoogleFonts.raleway(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      textBaseline: TextBaseline.ideographic,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        Center(
-          child: Text('he'),
+        Container(
+          margin: EdgeInsets.fromLTRB(12, 12, 12, 12),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Tags',
+            style: GoogleFonts.raleway(fontSize: 20),
+          ),
         ),
-        Center(
-          child: Text('he'),
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: Wrap(
+            children: [
+              _buildTag(context, "information"),
+              _buildTag(context, "inf"),
+              _buildTag(context, "information"),
+              _buildTag(context, "information"),
+              _buildTag(context, "information"),
+              _buildTag(context, "information"),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Flexible(
-              flex: 2,
-              fit: FlexFit.tight,
-              child: Text('he'),
-            ),
-            Flexible(
-              flex: 2,
-              fit: FlexFit.tight,
-              child: Text('he'),
-            ),
-            Flexible(
-              flex: 2,
-              fit: FlexFit.tight,
-              child: Text('he'),
-            )
-          ],
-        )
       ],
     );
   }

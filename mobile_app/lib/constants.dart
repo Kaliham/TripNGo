@@ -48,3 +48,14 @@ NeumorphicStyle getlistItemNeuStyle() {
     surfaceIntensity: 0.01,
   );
 }
+
+NeumorphicStyle getCircBtnNeuStyle() {
+  return NeumorphicStyle(
+    shape: NeumorphicShape.convex,
+    color: Colors.deepPurple[50],
+    boxShape: NeumorphicBoxShape.circle(),
+    depth: 8,
+    intensity: 0.66,
+    surfaceIntensity: 0.01,
+  );
+}
