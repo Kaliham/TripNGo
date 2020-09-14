@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,16 +9,29 @@ class TripsScreen extends StatefulWidget {
   _TripsScreenState createState() => _TripsScreenState();
 }
 
-class _TripsScreenState extends State<TripsScreen> {
+class _TripsScreenState extends State<TripsScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationContr;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    animationContr =
+        new AnimationController(vsync: this, duration: Duration.zero);
+  }
+
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       color: Colors.deepPurple[50],
       child: Column(
         children: [
           _buildSearchbar(context),
-          _buildTags(context),
+          SizedBox(
+            height: 20,
+          ),
           _buildList(
             context,
           ),
@@ -84,7 +98,9 @@ class _TripsScreenState extends State<TripsScreen> {
               ),
               NeumorphicButton(
                 child: Icon(Icons.filter_list),
-                onPressed: () {},
+                onPressed: () {
+                  _showFilterDialog();
+                },
                 style: getlistItemNeuStyle(),
               )
             ],
@@ -123,6 +139,39 @@ class _TripsScreenState extends State<TripsScreen> {
           style: GoogleFonts.raleway(fontWeight: FontWeight.w300),
         ),
         onPressed: () {},
+      ),
+    );
+  }
+
+  Future<void> _showFilterDialog() async {
+    return showCupertinoDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            width: size.width * 0.8,
+            height: size.height * 0.8,
+            child: Container(
+              child: Neumorphic(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  alignment: Alignment.topCenter,
+                  margin: EdgeInsets.all(80),
+                  child: _buildFilterContent(context),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildFilterContent(context) {
+    return Expanded(
+      child: Column(
+        children: [],
       ),
     );
   }

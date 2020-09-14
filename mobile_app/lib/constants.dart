@@ -1,7 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 Color lightBackgroundColor = Colors.deepPurple[50];
-
+Size size;
 NeumorphicStyle getNeuStyle() {
   return NeumorphicStyle(
     shape: NeumorphicShape.concave,

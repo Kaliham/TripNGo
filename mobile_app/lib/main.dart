@@ -73,6 +73,7 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return buildMainScreen(context);
   }
 
