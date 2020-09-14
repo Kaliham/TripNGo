@@ -17,14 +17,28 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
       alignment: Alignment.topCenter,
-      child: buildContent(context),
+      child: Column(
+        children: [
+          buildProfileCard(context),
+          buildStatsCard(context),
+          Container(
+            child: Text(
+              'Trips',
+              style: GoogleFonts.raleway(
+                fontSize: 26,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget buildContent(BuildContext context) {
+  Widget buildProfileCard(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Neumorphic(
-      style: getNeuStyle(),
+      style: getlistItemNeuStyle(),
       child: SizedBox(
         height: 200,
         child: Center(
@@ -76,6 +90,104 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         width: screenSize.width * 0.85,
       ),
+    );
+  }
+
+  Widget buildStatsCard(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Container(
+      margin: EdgeInsets.all(20),
+      child: Neumorphic(
+        style: getlistItemNeuStyle(),
+        child: SizedBox(
+          width: size.width * 0.85,
+          height: 200,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Text(
+                    'Trip Stats',
+                    style: GoogleFonts.raleway(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Center(
+                            child: Text(
+                              'Trips Done:',
+                              style: GoogleFonts.raleway(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: Center(
+                            child: Text(
+                              'Trips Planned:',
+                              style: GoogleFonts.raleway(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Center(
+                          child: Container(
+                            child: Text(
+                              '89',
+                              style: GoogleFonts.roboto(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        child: Center(
+                          child: Container(
+                            child: Text(
+                              '89',
+                              style: GoogleFonts.roboto(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTripsList(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {},
     );
   }
 }

@@ -89,9 +89,14 @@ class _TripsScreenState extends State<TripsScreen>
                       Flexible(
                         flex: 1,
                         child: Center(
-                          child: Text('Title',
-                              style: GoogleFonts.roboto(
-                                  fontSize: 16, fontWeight: FontWeight.w700)),
+                          child: Text(
+                            'Title',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.grey[700],
+                            ),
+                          ),
                         ),
                       ),
                       Flexible(
@@ -101,7 +106,10 @@ class _TripsScreenState extends State<TripsScreen>
                           margin: EdgeInsets.all(12),
                           alignment: Alignment.topLeft,
                           child: Text(
-                              'Description dsfd sf sfsdfsfsf sf sd f ff s s sf fs fsf sf sdf sf sf sf s sfsdfsdhfakhjsdkl j a dfjasld l; kksdjf'),
+                              'Description dsfd sf sfsdfsfsf sf sd f ff s s sf fs fsf sf sdf sf sf sf s sfsdfsdhfakhjsdkl j a dfjasld l; kksdjf',
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                              )),
                         ),
                       ),
                       Flexible(
