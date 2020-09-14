@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/constants.dart';
+import 'package:mobile_app/view/components/neumorphic_textfield.dart';
 
 class TripsScreen extends StatefulWidget {
   @override
@@ -77,36 +78,9 @@ class _TripsScreenState extends State<TripsScreen>
   }
 
   Widget _buildSearchbar(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
-      child: Neumorphic(
-        style: getlistItemNeuStyle(),
-        child: Container(
-          width: double.infinity,
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 1, 8, 1),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Search...',
-                    ),
-                  ),
-                ),
-              ),
-              NeumorphicButton(
-                child: Icon(Icons.filter_list),
-                onPressed: () {
-                  _showFilterDialog();
-                },
-                style: getlistItemNeuStyle(),
-              )
-            ],
-          ),
-        ),
-      ),
+    return NeumorphicSearchbar(
+      hintText: 'Searching...',
+      function: _showFilterDialog,
     );
   }
 
@@ -154,10 +128,10 @@ class _TripsScreenState extends State<TripsScreen>
             height: size.height * 0.8,
             child: Container(
               child: Neumorphic(
+                style: getlistItemNeuStyle(),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   alignment: Alignment.topCenter,
-                  margin: EdgeInsets.all(80),
                   child: _buildFilterContent(context),
                 ),
               ),
@@ -169,10 +143,43 @@ class _TripsScreenState extends State<TripsScreen>
   }
 
   Widget _buildFilterContent(context) {
-    return Expanded(
-      child: Column(
-        children: [],
-      ),
+    return Column(
+      children: [
+        Center(
+          child: Text('he'),
+        ),
+        Center(
+          child: Text('he'),
+        ),
+        Center(
+          child: Text('he'),
+        ),
+        Center(
+          child: Text('he'),
+        ),
+        Center(
+          child: Text('he'),
+        ),
+        Row(
+          children: [
+            Flexible(
+              flex: 2,
+              fit: FlexFit.tight,
+              child: Text('he'),
+            ),
+            Flexible(
+              flex: 2,
+              fit: FlexFit.tight,
+              child: Text('he'),
+            ),
+            Flexible(
+              flex: 2,
+              fit: FlexFit.tight,
+              child: Text('he'),
+            )
+          ],
+        )
+      ],
     );
   }
 }
