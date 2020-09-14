@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:mobile_app/constants.dart';
 import 'package:mobile_app/view/screens/home_screen.dart';
 import 'package:mobile_app/view/screens/people_screen.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
@@ -58,14 +59,15 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
     liquidController = new LiquidController();
     animController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 200));
-    botAnim = ColorTween(begin: Colors.deepPurple[200], end: Colors.white)
-        .animate(botAnimCont);
+
     curvedAnim =
         new CurvedAnimation(parent: animController, curve: Curves.easeIn);
-    colorAnim = ColorTween(begin: Colors.deepPurple[200], end: Colors.white)
-        .animate(curvedAnim);
-    colorAnim2 = ColorTween(begin: Colors.deepPurple[300], end: Colors.white)
-        .animate(curvedAnim);
+    colorAnim =
+        ColorTween(begin: Colors.deepPurple[200], end: lightBackgroundColor)
+            .animate(curvedAnim);
+    colorAnim2 =
+        ColorTween(begin: Colors.deepPurple[300], end: lightBackgroundColor)
+            .animate(curvedAnim);
     animController.forward();
   }
 
@@ -82,7 +84,10 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
           width: double.infinity,
           color: colorAnim.value,
           child: SafeArea(
-            child: TripsScreen(),
+            child: Container(
+              width: double.infinity,
+              child: TripsScreen(),
+            ),
           ),
         ),
       ),
@@ -112,7 +117,7 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   Widget buildMainScreen(BuildContext context) {
     return Scaffold(
       body: LiquidSwipe(
-        disableUserGesture: false,
+        disableUserGesture: true,
         pages: buildPages(context),
         enableLoop: true,
         initialPage: 1,

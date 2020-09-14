@@ -27,7 +27,6 @@ dependencies:
   flutter_neumorphic: ^3.0.2
   curved_navigation_bar: ^0.3.4 #latest version
   google_fonts: 
-  neumorphic: ^0.4.0
 
 
 

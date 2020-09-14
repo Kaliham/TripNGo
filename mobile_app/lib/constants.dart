@@ -1,5 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+Color lightBackgroundColor = Colors.deepPurple[50];
+
 NeumorphicStyle getNeuStyle() {
   return NeumorphicStyle(
     shape: NeumorphicShape.concave,
@@ -38,11 +40,11 @@ NeumorphicStyle getTxtNeuStyle() {
 
 NeumorphicStyle getlistItemNeuStyle() {
   return NeumorphicStyle(
-    shape: NeumorphicShape.concave,
-    color: Colors.grey[200],
+    shape: NeumorphicShape.convex,
+    color: Colors.deepPurple[50],
     boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-    depth: 18,
-    intensity: 1,
-    surfaceIntensity: 0.46,
+    depth: 8,
+    intensity: 0.66,
+    surfaceIntensity: 0.01,
   );
 }
