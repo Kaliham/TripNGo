@@ -97,13 +97,14 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
       body: LiquidSwipe(
         disableUserGesture: false,
         pages: buildPages(context),
+        enableLoop: true,
         liquidController: liquidController,
         onPageChangeCallback: (activePageIndex) {
           animController.reset();
           animController.forward();
         },
         slidePercentCallback: (slidePercentHorizontal, slideVertical) {
-          if (slidePercentHorizontal > 10 || slideVertical > 10) {
+          if (slidePercentHorizontal > 30) {
             animController.reset();
           }
         },
