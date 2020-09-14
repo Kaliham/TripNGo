@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:mobile_app/view/screens/home_screen.dart';
 import 'package:mobile_app/view/screens/people_screen.dart';
@@ -14,12 +15,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return NeumorphicApp(
       title: 'TripNGo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -35,14 +32,12 @@ class MyHomePage extends StatefulWidget {
 
 class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   int _index;
-  static LiquidController globalLiqController;
   LiquidController liquidController;
   AnimationController animController;
   Animation curvedAnim, colorAnim, colorAnim2;
   @override
   void initState() {
     super.initState();
-    globalLiqController = new LiquidController();
     _index = 0;
     liquidController = new LiquidController();
     animController = new AnimationController(
@@ -59,13 +54,7 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return LiquidSwipe(
-      pages: [
-        buildMainScreen(context),
-        ProfileScreen(),
-      ],
-      liquidController: globalLiqController,
-    );
+    return buildMainScreen(context);
   }
 
   List<Widget> buildPages(BuildContext context) {
@@ -106,6 +95,7 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   Widget buildMainScreen(BuildContext context) {
     return Scaffold(
       body: LiquidSwipe(
+        disableUserGesture: false,
         pages: buildPages(context),
         liquidController: liquidController,
         onPageChangeCallback: (activePageIndex) {

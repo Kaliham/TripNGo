@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/main.dart';
+import 'package:mobile_app/view/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -57,9 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                    child: Text('edit profile!'),
+                    child: Text('< edit profile'),
                     onTap: () {
-                      MainState.globalLiqController.animateToPage(page: 1);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileScreen()));
                     },
                   ),
                 ],

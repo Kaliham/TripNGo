@@ -10,30 +10,23 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            NeumorphicBackButton(
-              style: NeumorphicStyle(
-                shape: NeumorphicShape.concave,
-                color: Colors.white,
-                boxShape:
-                    NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-                depth: 5,
-                lightSource: LightSource.topLeft,
-                intensity: 0.24,
-                surfaceIntensity: 0.23,
+    return NeumorphicApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              NeumorphicBackButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              onPressed: () {
-                MainState.globalLiqController.animateToPage(page: 0);
-              },
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text('profile'),
-            ),
-          ],
+              Container(
+                alignment: Alignment.center,
+                child: Text('profile'),
+              ),
+            ],
+          ),
         ),
       ),
     );
