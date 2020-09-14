@@ -15,9 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
       alignment: Alignment.topCenter,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           buildProfileCard(context),
           buildStatsCard(context),
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          Expanded(child: buildTripsList(context)),
         ],
       ),
     );
@@ -186,8 +189,31 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildTripsList(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {},
+    return ListView(
+      children: [
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+        buildTripsItem(context),
+      ],
+    );
+  }
+
+  Widget buildTripsItem(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(30),
+      width: 350,
+      child: Neumorphic(
+        style: getlistItemNeuStyle(),
+        child: SizedBox(
+          width: 350,
+          height: 100,
+        ),
+      ),
     );
   }
 }
