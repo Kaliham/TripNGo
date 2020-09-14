@@ -8,6 +8,31 @@ class PeopleScreen extends StatefulWidget {
 class _PeopleScreenState extends State<PeopleScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: [
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+        Text('234'),
+      ],
+    );
   }
 }

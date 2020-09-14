@@ -56,19 +56,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  InkWell(
-                    child: Text('< edit profile'),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileScreen()));
-                    },
+              Container(
+                margin: EdgeInsets.all(6),
+                child: InkWell(
+                  child: Text(
+                    '< edit profile',
+                    style: GoogleFonts.raleway(),
                   ),
-                ],
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfileScreen()));
+                  },
+                ),
               ),
             ],
           ),

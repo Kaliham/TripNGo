@@ -42,7 +42,7 @@ class _TripsScreenState extends State<TripsScreen> {
   Widget _buildListItem(BuildContext context, info) {
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      child: Neumorphic(
+      child: NeumorphicButton(
         style: getlistItemNeuStyle(),
         child: Container(
           width: 200,
@@ -57,6 +57,7 @@ class _TripsScreenState extends State<TripsScreen> {
             ),
           ),
         ),
+        onPressed: () {},
       ),
     );
   }
@@ -64,17 +65,29 @@ class _TripsScreenState extends State<TripsScreen> {
   Widget _buildSearchbar(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
-      child: Center(
-        child: Neumorphic(
-          style: getlistItemNeuStyle(),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 1, 8, 1),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Search...',
+      child: Neumorphic(
+        style: getlistItemNeuStyle(),
+        child: Container(
+          width: double.infinity,
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 1, 8, 1),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Search...',
+                    ),
+                  ),
+                ),
               ),
-            ),
+              NeumorphicButton(
+                child: Icon(Icons.filter_list),
+                onPressed: () {},
+                style: getlistItemNeuStyle(),
+              )
+            ],
           ),
         ),
       ),

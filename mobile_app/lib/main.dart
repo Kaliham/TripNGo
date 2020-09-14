@@ -117,9 +117,8 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   Widget buildMainScreen(BuildContext context) {
     return Scaffold(
       body: LiquidSwipe(
-        disableUserGesture: true,
+        disableUserGesture: false,
         pages: buildPages(context),
-        enableLoop: true,
         initialPage: 1,
         liquidController: liquidController,
         onPageChangeCallback: (activePageIndex) {
