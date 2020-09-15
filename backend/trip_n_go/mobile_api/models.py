@@ -10,7 +10,7 @@ class Post(models.Model):
         return self.title
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, phoneNumber,firstName, lastName):
+    def create_user(self, email, password, phoneNumber ="#",firstName="#", lastName="#"):
         """
         Creates and saves a User with the given email and password.
         """
@@ -27,28 +27,31 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password, phoneNumber,firstName, lastName):
+    def create_staffuser(self, email, password,  phoneNumber ="#",firstName="#", lastName="#"):
         """
         Creates and saves a staff user with the given email and password.
         """
         user = self.create_user(
             email,
             password=password,
+            phoneNumber = phoneNumber,
+            firstName = firstName,
+            lastName = lastName,
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, phoneNumber,firstName, lastName):
+    def create_superuser(self, email, password, phoneNumber ="#",firstName="#", lastName="#"):
         """
         Creates and saves a superuser with the given email and password.
         """
         user = self.create_user(
             email,
-            password=password,
-            phoneNumber=phoneNumber,
-            firstName=firstName,
-            lastName=lastName,
+            password = password,
+            phoneNumber = phoneNumber,
+            firstName = firstName,
+            lastName = lastName,
         )
         user.staff = True
         user.admin = True
@@ -63,13 +66,13 @@ class User(AbstractBaseUser):
         unique=True,
     )
 
-    phoneNumber = models.CharField(max_length=18)
-    firstName = models.CharField(max_length=16,default='')
-    lastName = models.CharField(max_length=16,default='')
+    phoneNumber = models.CharField(max_length = 18, default = '#')
+    firstName = models.CharField(max_length = 16, default = '')
+    lastName = models.CharField(max_length = 16, default = '')
 
-    active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False)
+    active = models.BooleanField(default = True)
+    staff = models.BooleanField(default = False) # a admin user; non super-user
+    admin = models.BooleanField(default = False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] 
@@ -77,11 +80,11 @@ class User(AbstractBaseUser):
 
     def get_full_name(self):
         # The user is identified by their email address
-        return self.email
+        return self.firstName+" "+self.lastName
 
     def get_short_name(self):
         # The user is identified by their email address
-        return self.email
+        return self.firstName
 
     def __str__(self):              # __unicode__ on Python 2
         return self.email
