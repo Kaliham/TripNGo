@@ -5,4 +5,5 @@ class Trip {
   String goingTime = "08:00 Am";
   String title = "Petra With the boys";
   String groupName = "The boys";
+  int groupId;
 }
