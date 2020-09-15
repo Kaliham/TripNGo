@@ -1,9 +1,59 @@
 class Trip {
-  String _imageUrl =
-      "https://lp-cms-production.imgix.net/2019-06/f27a1f10a618448d65e6ac16c9270e56-petra.jpg?auto=compress&fit=crop&fm=auto&sharp=10&vib=20&w=1200";
-  String dateText = "07/Dec";
-  String goingTime = "08:00 Am";
-  String title = "Petra With the boys";
-  String groupName = "The boys";
-  int groupId;
+  String title;
+  String imageUrl;
+  String date;
+  String time;
+  String phoneNumber;
+  int groupID;
+  String groupName;
+  bool active;
+  double budget;
+  String location;
+  String link;
+  Trip({
+    this.title,
+    this.active,
+    this.budget,
+    this.date,
+    this.groupID,
+    this.time,
+    this.groupName,
+    this.imageUrl,
+    this.link,
+    this.location,
+    this.phoneNumber,
+  });
+}
+
+class Offer {
+  String offerId;
+  String title;
+  String description;
+  String imageUrl;
+  String callNumber;
+  int avaibleQuantity;
+  String date;
+  String time;
+  bool active;
+  double price;
+  Offer({
+    this.title,
+    this.active,
+    this.avaibleQuantity,
+    this.callNumber,
+    this.date,
+    this.time,
+    this.description,
+    this.imageUrl,
+    this.offerId,
+    this.price,
+  });
+}
+
+class Item {
+  String title;
+  String imageUrl;
+  String assignedTo;
+  String price;
+  int tripId;
 }

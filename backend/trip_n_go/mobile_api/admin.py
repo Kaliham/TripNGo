@@ -4,10 +4,12 @@ from django.contrib import admin
 
 from .models import Post
 from .models import User
-from .modelinfo.trip import Trip
+from .modelinfo.trip import Trip,Offer,Item
 from .modelinfo.group import Group
 
 admin.site.register(Post)
 admin.site.register(Trip)
+admin.site.register(Offer)
+admin.site.register(Item)
 admin.site.register(User)
 admin.site.register(Group)

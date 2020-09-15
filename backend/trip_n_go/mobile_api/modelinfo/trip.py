@@ -13,7 +13,9 @@ class Trip(models.Model):
     group = models.ForeignKey(Group, on_delete=models.DO_NOTHING,blank=True)
     active = models.BooleanField(default=True)
     budget = models.DecimalField(max_digits=6,decimal_places=2,default=0.0)
-    location = models.TextField()
+    location = models.TextField(default="")
+    link = models.TextField(default="")
+
     def __str__(self):
         return self.title
 
@@ -28,7 +30,6 @@ class Offer(models.Model):
     time = models.CharField(max_length=7,default='00:00Am')
     active = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=6,decimal_places=2,default=0.0)
-    recommendedAge = models.CharField(max_length=8,default="1+")
 
     def __str__(self):
         return self.title
@@ -36,8 +37,8 @@ class Offer(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=32)
     imageUrl = models.TextField()
-    assignedTo = models.ForeignKey(User)
+    assignedTo = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     price = models.DecimalField(max_digits=6,decimal_places=2,default=0.0)
-
+    trip = models.ForeignKey(Trip,on_delete=models.CASCADE)
     def __str__(self):
         return self.title
