@@ -137,7 +137,7 @@ class MainState extends State<MyHomePage> with SingleTickerProviderStateMixin {
         animation: colorAnim,
         builder: (context, _) => CurvedNavigationBar(
           color: Colors.deepPurple[400],
-          backgroundColor: colorAnim.value,
+          backgroundColor: Colors.transparent,
           // these are place holders
           index: _index,
           items: [
