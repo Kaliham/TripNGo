@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:mobile_app/constants.dart';
+import 'package:mobile_app/logic_setup.dart';
 import 'package:mobile_app/view/screens/home_screen.dart';
 import 'package:mobile_app/view/screens/people_screen.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
@@ -10,6 +11,7 @@ import 'package:mobile_app/view/screens/trips_screen.dart';
 
 void main() {
   runApp(MyApp());
+  initalizer();
 }
 
 class MyApp extends StatelessWidget {

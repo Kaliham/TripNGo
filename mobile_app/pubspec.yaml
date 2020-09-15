@@ -28,6 +28,7 @@ dependencies:
   curved_navigation_bar: ^0.3.4 #latest version
   google_fonts: 
   http: ^0.12.2
+  get_it: ^5.0.0
 
 
 
