@@ -1,9 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get_it/get_it.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:mobile_app/constants.dart';
 import 'package:mobile_app/logic_setup.dart';
+import 'package:mobile_app/services/trips_serivce.dart';
 import 'package:mobile_app/view/screens/home_screen.dart';
 import 'package:mobile_app/view/screens/people_screen.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
@@ -12,6 +14,8 @@ import 'package:mobile_app/view/screens/trips_screen.dart';
 void main() {
   runApp(MyApp());
   initalizer();
+  TripsService t = GetIt.I<TripsService>();
+  var n = t.getTripsList();
 }
 
 class MyApp extends StatelessWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/main.dart';
+import 'package:mobile_app/model/trip_model.dart';
 import 'package:mobile_app/view/components/trips_list.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
 
@@ -192,13 +193,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildTripsList(BuildContext context) {
     return ListView(
       children: [
-        TripsItem(),
-        TripsItem(),
-        TripsItem(),
-        TripsItem(),
-        TripsItem(),
-        TripsItem(),
-        TripsItem(),
+        TripsItem(Trip(
+            time: "07:30 PM",
+            title: "Petra with the boys",
+            date: "07/Dec",
+            groupName: "The boys",
+            imageUrl:
+                "https://lp-cms-production.imgix.net/2019-06/f27a1f10a618448d65e6ac16c9270e56-petra.jpg")),
       ],
     );
   }
