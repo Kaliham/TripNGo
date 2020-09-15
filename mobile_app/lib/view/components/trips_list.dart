@@ -5,11 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
 
 class TripsItem extends StatefulWidget {
-  @override
-  _TripsItemState createState() => _TripsItemState();
-}
-
-class _TripsItemState extends State<TripsItem> {
   String imageUrl =
       "https://lp-cms-production.imgix.net/2019-06/f27a1f10a618448d65e6ac16c9270e56-petra.jpg?auto=compress&fit=crop&fm=auto&sharp=10&vib=20&w=1200";
   var dateText = "07/Dec";
@@ -17,6 +12,18 @@ class _TripsItemState extends State<TripsItem> {
   var title = "Petra With the boys";
   var groupName = "The boys";
 
+  TripsItem({
+    this.title,
+    this.groupName,
+    this.dateText,
+    this.goingTime,
+    this.imageUrl,
+  });
+  @override
+  _TripsItemState createState() => _TripsItemState();
+}
+
+class _TripsItemState extends State<TripsItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,7 +55,7 @@ class _TripsItemState extends State<TripsItem> {
         alignment: Alignment.topLeft,
         child: Container(
           child: Image.network(
-            imageUrl,
+            widget.imageUrl,
             height: 100,
             fit: BoxFit.fitHeight,
           ),
@@ -63,7 +70,7 @@ class _TripsItemState extends State<TripsItem> {
         children: [
           Container(
             child: Text(
-              title,
+              widget.title,
               style:
                   GoogleFonts.roboto(fontSize: 18, fontWeight: FontWeight.w400),
             ),
@@ -71,7 +78,7 @@ class _TripsItemState extends State<TripsItem> {
           Container(
             alignment: Alignment.bottomRight,
             child: Text(
-              groupName,
+              widget.groupName,
               style:
                   GoogleFonts.roboto(fontSize: 15, fontWeight: FontWeight.w400),
             ),
@@ -86,12 +93,23 @@ class _TripsItemState extends State<TripsItem> {
       child: Column(
         children: [
           Container(
-            child: Text(dateText),
+            child: Text(widget.dateText),
           ),
           Container(
-            child: Text(goingTime),
+            child: Text(widget.goingTime),
           )
         ],
+      ),
+    );
+  }
+}
+
+class TripsList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListView(
+        children: [],
       ),
     );
   }
