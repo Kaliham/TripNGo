@@ -10,7 +10,10 @@ import '../../constants.dart';
 class TripsItem extends StatefulWidget {
   final Trip trip;
 
-  TripsItem([this.trip]);
+  TripsItem([this.trip]) {
+    TripsService tripsService = GetIt.I<TripsService>();
+    var tmp = tripsService.getTripsList();
+  }
   @override
   _TripsItemState createState() => _TripsItemState();
 }
@@ -103,17 +106,50 @@ class _TripsItemState extends State<TripsItem> {
   }
 }
 
-class TripsList extends StatelessWidget {
-  List<Trip> data;
+class TripsList extends StatefulWidget {
   TripsService service;
-  TripsList(){
+  TripsList() {
     service = GetIt.I<TripsService>();
   }
+
+  @override
+  _TripsListState createState() => _TripsListState();
+}
+
+class _TripsListState extends State<TripsList> {
+  List<Trip> data;
+  bool _isLoading;
+  TripsService get service => GetIt.instance<TripsService>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isLoading = false;
+    _fetchData();
+  }
+
+  void _fetchData() async {
+    setState(() {
+      _isLoading = true;
+    });
+    data = await service.getTripsList();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.builder(
-        itemBuilder: ,
+      child: Builder(
+        builder: (c) {
+          if (_isLoading) return CircularProgressIndicator();
+          return ListView.builder(
+            itemBuilder: (_, index) {
+              return TripsItem(data[index]);
+            },
+          );
+        },
       ),
     );
   }

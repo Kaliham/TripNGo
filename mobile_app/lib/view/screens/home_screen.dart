@@ -191,16 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildTripsList(BuildContext context) {
-    return ListView(
-      children: [
-        TripsItem(Trip(
-            time: "07:30 PM",
-            title: "Petra with the boys",
-            date: "07/Dec",
-            groupName: "The boys",
-            imageUrl:
-                "https://lp-cms-production.imgix.net/2019-06/f27a1f10a618448d65e6ac16c9270e56-petra.jpg")),
-      ],
-    );
+    return TripsList();
   }
 }

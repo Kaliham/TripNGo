@@ -4,13 +4,32 @@ import 'package:http/http.dart' as http;
 
 class TripsService {
   Future<List<Trip>> getTripsList() {
-    var response = http.get("http://127.0.0.1:9090/api/").then((data) {
+    var response = http.get("http://127.0.0.1:9090/api/trips").then((data) {
       //succesful
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
-        print(jsonData);
+        final trips = <Trip>[];
+        for (var item in jsonData) {
+          /*final trip = Trip(
+            active: item['active'],
+            groupID: int.parse(item['group']),
+            groupName: item['group'].toString(),
+            title: item['title'],
+            imageUrl: item['imageUrl'],
+            budget: double.parse(item['budget']),
+            link: item['link'],
+            location: item['location'],
+            phoneNumber: item['phoneNumber'],
+            date: item['date'],
+            time: item['time'],
+          );
+          trips.add(trip);
+        }
+        return trips;*/
+          print(item);
+        }
       }
     });
-    return null;
+    return response;
   }
 }
