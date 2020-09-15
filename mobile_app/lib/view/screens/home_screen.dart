@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/main.dart';
+import 'package:mobile_app/view/components/trips_list.dart';
 import 'package:mobile_app/view/screens/profile_screen.dart';
 
 import '../../constants.dart';
@@ -191,29 +192,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildTripsList(BuildContext context) {
     return ListView(
       children: [
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
-        buildTripsItem(context),
+        TripsItem(),
+        TripsItem(),
+        TripsItem(),
+        TripsItem(),
+        TripsItem(),
+        TripsItem(),
+        TripsItem(),
       ],
-    );
-  }
-
-  Widget buildTripsItem(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(30),
-      width: 350,
-      child: Neumorphic(
-        style: getlistItemNeuStyle(),
-        child: SizedBox(
-          width: 350,
-          height: 100,
-        ),
-      ),
     );
   }
 }
