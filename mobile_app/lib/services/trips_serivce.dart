@@ -13,7 +13,7 @@ class TripsService {
           final trip = Trip(
             active: item['active'],
             groupID: item['group'].toString(),
-            groupName: item['group'].toString(),
+            groupName: item['group']['groupName'].toString(),
             title: item['title'],
             imageUrl: item['imageUrl'],
             budget: double.parse(item['budget']),

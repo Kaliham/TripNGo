@@ -26,6 +26,16 @@ def apiOverview(request):
 
 @api_view(['Get'])
 def getTrips(request):
+    
+    trips = Trip.objects.all()
+    serializer = TripsSerializer(trips, many=True)
+    return Response(serializer.data)
+
+@api_view(['Get'])
+def getTripsById(request,id):
+    user = User.objects.get(id=id)
+    groups = Group.objects.filter(participants__in=[user])
+    print(groups)
     trips = Trip.objects.all()
     serializer = TripsSerializer(trips, many=True)
     return Response(serializer.data)
@@ -39,6 +49,13 @@ def getUsers(request):
 @api_view(['Get'])
 def getGroups(request):
     groups = Group.objects.all()
+    serializer = GroupsSerializer(groups, many=True)
+    return Response(serializer.data)
+
+@api_view(['Get'])
+def getGroupsById(request,id):
+    user = User.objects.get(id=id)
+    groups = Group.objects.filter(participants__in=[user])
     serializer = GroupsSerializer(groups, many=True)
     return Response(serializer.data)
 

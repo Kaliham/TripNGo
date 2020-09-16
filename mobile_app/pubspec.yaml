@@ -29,6 +29,7 @@ dependencies:
   google_fonts: 
   http: ^0.12.2
   get_it: ^5.0.0
+  shared_preferences:
 
 
 

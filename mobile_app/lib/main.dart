@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:mobile_app/constants.dart';
 import 'package:mobile_app/logic_setup.dart';
+import 'package:mobile_app/services/shared_preference.dart';
 import 'package:mobile_app/services/trips_serivce.dart';
 import 'package:mobile_app/view/screens/home_screen.dart';
 import 'package:mobile_app/view/screens/people_screen.dart';
@@ -16,6 +17,13 @@ void main() {
   initalizer();
   TripsService t = GetIt.I<TripsService>();
   var n = t.getTripsList();
+  SharedPreferencesHelper prefHelper = SharedPreferencesHelper();
+  prefHelper.getLogin().then((value) {
+    if (value == null) print('null value sir');
+    print(value);
+  }).timeout(Duration(milliseconds: 1000), onTimeout: () {
+    print('first time');
+  });
 }
 
 class MyApp extends StatelessWidget {
