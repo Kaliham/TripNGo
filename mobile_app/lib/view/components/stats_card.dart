@@ -16,6 +16,20 @@ class StatsCard extends StatefulWidget {
 }
 
 class _StatsCardState extends State<StatsCard> {
+  bool _isDone = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchData();
+  }
+
+  void _fetchData() {
+    setState(() {
+      _isDone = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
