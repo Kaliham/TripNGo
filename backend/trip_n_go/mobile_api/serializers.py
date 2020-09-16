@@ -45,7 +45,7 @@ class TripsSerializer(serializers.ModelSerializer):
 class OffersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer 
-        fields = ('title','imageUrl','assignedTo','Price')
+        fields = '__all__'
 
 class FriendsSerializer(serializers.ModelSerializer):
     friends = UsersSerializer(many=True,read_only=True)

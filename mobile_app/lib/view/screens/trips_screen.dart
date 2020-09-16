@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/constants.dart';
 import 'package:mobile_app/view/components/neumorphic_textfield.dart';
+import 'package:mobile_app/view/components/offers_list.dart';
 
 class TripsScreen extends StatefulWidget {
   @override
@@ -43,100 +44,12 @@ class _TripsScreenState extends State<TripsScreen>
 
   Widget _buildList(BuildContext context) {
     return Expanded(
-      child: ListView(
-        children: [
-          _buildListItem(context, "League Stearms"),
-          _buildListItem(context, "League Stearms"),
-          _buildListItem(context, "League Stearms"),
-          _buildListItem(context, "League Stearms"),
-        ],
-      ),
+      child: OffersList(),
     );
   }
 
-  Widget _buildListItem(BuildContext context, info) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      child: NeumorphicButton(
-        padding: EdgeInsets.all(0),
-        style: getlistItemNeuStyle(),
-        child: Container(
-          height: 160,
-          child: Row(
-            children: [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.loose,
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  color: Colors.black,
-                  width: double.infinity,
-                  alignment: Alignment.topLeft,
-                  foregroundDecoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            'https://cdn.abcotvs.com/dip/images/6213304_052620-cc-ss-outdoor-picnic-img.jpg?w=1600'),
-                        fit: BoxFit.fitHeight),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 2,
-                fit: FlexFit.tight,
-                child: Container(
-                  child: Column(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Center(
-                          child: Text(
-                            'Title',
-                            style: GoogleFonts.roboto(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey[700],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 5,
-                        fit: FlexFit.tight,
-                        child: Container(
-                          margin: EdgeInsets.all(12),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                              'Description dsfd sf sfsdfsfsf sf sd f ff s s sf fs fsf sf sdf sf sf sf s sfsdfsdhfakhjsdkl j a dfjasld l; kksdjf',
-                              style: TextStyle(
-                                color: Colors.grey[700],
-                              )),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 3,
-                        fit: FlexFit.tight,
-                        child: Container(
-                          margin: EdgeInsets.all(15),
-                          alignment: Alignment.topRight,
-                          child: Text(
-                            '150JD',
-                            style: GoogleFonts.roboto(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.deepPurple[800]),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        onPressed: () {},
-      ),
-    );
+  Widget _buildListItem(BuildContext context, offer) {
+    return OffersItem(offer);
   }
 
   Widget _buildSearchbar(BuildContext context) {

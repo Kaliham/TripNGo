@@ -10,6 +10,7 @@ class Trip {
   double budget;
   String location;
   String link;
+  List<Item> items;
   Trip({
     this.title,
     this.active,
@@ -22,6 +23,7 @@ class Trip {
     this.link,
     this.location,
     this.phoneNumber,
+    this.items,
   });
 }
 
@@ -37,15 +39,15 @@ class Offer {
   bool active;
   double price;
   Offer({
+    this.offerId,
     this.title,
-    this.active,
-    this.avaibleQuantity,
-    this.callNumber,
-    this.date,
-    this.time,
     this.description,
     this.imageUrl,
-    this.offerId,
+    this.callNumber,
+    this.avaibleQuantity,
+    this.date,
+    this.time,
+    this.active,
     this.price,
   });
 }

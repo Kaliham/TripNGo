@@ -3,7 +3,7 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import TripsSerializer,UsersSerializer,GroupsSerializer,ItemsSerializer,UserCreationSerializer
+from .serializers import TripsSerializer,UsersSerializer,GroupsSerializer,ItemsSerializer,UserCreationSerializer,OffersSerializer
 
 from .modelinfo.trip import Trip,Item,Offer
 from .modelinfo.group import Group
@@ -50,6 +50,12 @@ def getUsers(request):
 def getGroups(request):
     groups = Group.objects.all()
     serializer = GroupsSerializer(groups, many=True)
+    return Response(serializer.data)
+
+@api_view(['Get'])
+def getOffers(request):
+    offers = Offer.objects.all()
+    serializer = OffersSerializer(offers, many=True)
     return Response(serializer.data)
 
 @api_view(['Get'])
