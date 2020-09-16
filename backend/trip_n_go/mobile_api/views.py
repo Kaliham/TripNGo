@@ -88,10 +88,8 @@ def createItems(request):
 @api_view(['Post'])
 def updateAccount(request, id):
     try:
-        user = User.objects.get(id = id)
-        form = UserForm(instance=user)
-        form['phoneNumber']=request.data['phoneNumber']
-        form.save()
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['phoneNumber'])
+        print(user)
 
         return Response('success')
     except:
