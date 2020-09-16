@@ -7,9 +7,12 @@ class NeumorphicTextfield extends StatefulWidget {
   var _hintText;
 
   TextInputType _textType;
-  NeumorphicTextfield({hintText, TextInputType dataType: TextInputType.text}) {
+  bool ob;
+  NeumorphicTextfield(
+      {hintText, TextInputType dataType: TextInputType.text, ob}) {
     this._hintText = hintText;
     this._textType = dataType;
+    this.ob = ob;
   }
 
   @override
@@ -29,6 +32,7 @@ class _NeumorphicTextfieldState extends State<NeumorphicTextfield> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
               child: TextField(
+                obscureText: widget.ob,
                 keyboardType: widget._textType,
                 cursorColor: Colors.deepPurple,
                 decoration: InputDecoration(

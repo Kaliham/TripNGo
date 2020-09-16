@@ -59,3 +59,26 @@ NeumorphicStyle getCircBtnNeuStyle() {
     surfaceIntensity: 0.01,
   );
 }
+
+NeumorphicStyle getlistItemDarkNeuStyle() {
+  return NeumorphicStyle(
+    shape: NeumorphicShape.convex,
+    color: Colors.deepPurple[600],
+    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+    depth: 8,
+    intensity: 0.66,
+    surfaceIntensity: 0.01,
+  );
+}
+
+NeumorphicStyle getRegisterNeuStyle() {
+  return NeumorphicStyle(
+    shape: NeumorphicShape.convex,
+    color: Colors.deepPurple[800],
+    shadowLightColor: Colors.deepPurple[800],
+    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+    depth: 8,
+    intensity: 0.66,
+    surfaceIntensity: 0.01,
+  );
+}

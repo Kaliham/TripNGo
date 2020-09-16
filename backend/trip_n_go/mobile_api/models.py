@@ -10,7 +10,7 @@ class Post(models.Model):
         return self.title
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password, phoneNumber ="#",firstName="#", lastName="#"):
+    def create_user(self, email, password, phoneNumber ="#",firstName="#", lastName="#",imageUrl="https://image.flaticon.com/icons/png/512/10/10003.png"):
         """
         Creates and saves a User with the given email and password.
         """
@@ -20,6 +20,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
         )
+        user.imageUrl = imageUrl
         user.firstName = firstName
         user.lastName = lastName
         user.phoneNumber = phoneNumber
@@ -68,7 +69,7 @@ class User(AbstractBaseUser):
     phoneNumber = models.CharField(max_length = 18, default = '#')
     firstName = models.CharField(max_length = 16, default = '')
     lastName = models.CharField(max_length = 16, default = '')
-
+    imageUrl = models.TextField(default="https://image.flaticon.com/icons/png/512/10/10003.png")
     active = models.BooleanField(default = True)
     staff = models.BooleanField(default = False) # a admin user; non super-user
     admin = models.BooleanField(default = False)
