@@ -17,14 +17,14 @@ class GroupsSerializer(serializers.ModelSerializer):
         model = Group
         fields = ('id','groupName','participants')
 
-class ItemsSerialzier(serializers.ModelSerializer):
+class ItemsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = "__all__"
 
 class TripsSerializer(serializers.ModelSerializer):
     group = GroupsSerializer(many=False, read_only=True)
-    items = ItemsSerialzier(source="item_set",many=True)
+    items = ItemsSerializer(source="item_set",many=True)
     
     class Meta:
         model = Trip
@@ -52,3 +52,9 @@ class FriendsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Friend
         fields = ('user','friends')
+
+class UserCreationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('email','phoneNumber','firstName','lastName','active','staff','admin','password')
