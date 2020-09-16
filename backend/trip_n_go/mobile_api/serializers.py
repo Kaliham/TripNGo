@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .modelinfo.trip import Trip,Offer,Item
 from .models import User
 from .modelinfo.group import Group
+from .modelinfo.friend import  Friend
 
 
 class UsersSerializer(serializers.ModelSerializer):
@@ -23,7 +24,8 @@ class ItemsSerialzier(serializers.ModelSerializer):
 
 class TripsSerializer(serializers.ModelSerializer):
     group = GroupsSerializer(many=False, read_only=True)
-    Items = ItemsSerialzier(many=True)
+    items = ItemsSerialzier(source="item_set",many=True)
+    
     class Meta:
         model = Trip
         fields = (
@@ -37,11 +39,16 @@ class TripsSerializer(serializers.ModelSerializer):
             'budget',
             'location',
             'link',
-            'Items',
+            'items',
         )
 
 class OffersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer 
-        fields = "__all__"
+        fields = ('title','imageUrl','assignedTo','Price')
 
+class FriendsSerializer(serializers.ModelSerializer):
+    friends = UsersSerializer(many=True,read_only=True)
+    class Meta:
+        model = Friend
+        fields = ('user','friends')

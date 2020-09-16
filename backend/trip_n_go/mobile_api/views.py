@@ -14,8 +14,12 @@ from .models import User
 @api_view(['Get'])
 def apiOverview(request):
     apiOVList = {
-        'Get trips':'/trips',
-        'Get Users':'/users'
+        'Get User':'/users',
+        'Get trips':'/trips/<str:id>',
+        'Get Friends':'/friends/<str:id>',
+        'Get Groups':'/groups/<str:id>',
+        'Get Offers':'/offers',
+        'Get ':'',
     }
     return Response(apiOVList)
 
