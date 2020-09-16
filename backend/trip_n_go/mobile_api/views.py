@@ -85,15 +85,7 @@ def createItems(request):
     return Response('failed')
 
 
-@api_view(['Post'])
-def updateAccount(request, id):
-    try:
-        user = User.objects.filter(id = id).update(phoneNumber=request.data['phoneNumber'])
-        print(user)
 
-        return Response('success')
-    except:
-        return Response('failed')
     
 
 @api_view(['Post'])
@@ -124,5 +116,68 @@ def updateItems(request,id):
     return Response('failed')
 
 
+"""\
+    =============== Edit Account Specific Info ============
+"""
+@api_view(['Post'])
+def updatePhoneNumberAccount(request, id):
+    try:
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['phoneNumber'])
+        print(user)
 
+        return Response('success')
+    except:
+        return Response('failed')
+
+@api_view(['Post'])
+def updateEmailAccount(request, id):
+    try:
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['email'])
+        print(user)
+
+        return Response('success')
+    except:
+        return Response('failed')
+
+@api_view(['Post'])
+def updatePasswordAccount(request, id):
+    try:
+        user = User.objects.get(id = id)
+        user_form = UserForm(instance=user)
+        user = user_form.save()
+        user.set_password(request.data['password'])
+        user.save()
+        return Response('success')
+    except:
+        return Response('failed')
+
+@api_view(['Post'])
+def updateFirstNameAccount(request, id):
+    try:
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['firstNumber'])
+        print(user)
+
+        return Response('success')
+    except:
+        return Response('failed')
+
+@api_view(['Post'])
+def updateLastNameAccount(request, id):
+    try:
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['lastNumber'])
+        print(user)
+
+        return Response('success')
+    except:
+        return Response('failed')
+
+@api_view(['Post'])
+def updateActiveAccount(request, id):
+    try:
+        user = User.objects.filter(id = id).update(phoneNumber=request.data['Active'])
+        print(user)
+
+        return Response('success')
+    except:
+        return Response('failed')
 
