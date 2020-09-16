@@ -10,9 +10,9 @@ class TripsService {
         final jsonData = json.decode(data.body);
         final trips = <Trip>[];
         for (var item in jsonData) {
-          /*final trip = Trip(
+          final trip = Trip(
             active: item['active'],
-            groupID: int.parse(item['group']),
+            groupID: item['group'].toString(),
             groupName: item['group'].toString(),
             title: item['title'],
             imageUrl: item['imageUrl'],
@@ -25,9 +25,7 @@ class TripsService {
           );
           trips.add(trip);
         }
-        return trips;*/
-          print(item);
-        }
+        return trips;
       }
     });
     return response;

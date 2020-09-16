@@ -4,7 +4,7 @@ class Trip {
   String date;
   String time;
   String phoneNumber;
-  int groupID;
+  String groupID;
   String groupName;
   bool active;
   double budget;

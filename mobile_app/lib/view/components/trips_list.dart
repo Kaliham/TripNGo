@@ -27,11 +27,12 @@ class _TripsItemState extends State<TripsItem> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.trip.imageUrl);
     return Container(
       margin: EdgeInsets.all(30),
       width: 350,
-      child: Neumorphic(
+      child: NeumorphicButton(
+        padding: EdgeInsets.all(0),
+        onPressed: () {},
         style: getlistItemNeuStyle(),
         child: SizedBox(
           width: 350,
@@ -51,6 +52,8 @@ class _TripsItemState extends State<TripsItem> {
   // Parts of the Widget
   Widget buildImage(BuildContext context) {
     return Flexible(
+      flex: 1,
+      fit: FlexFit.tight,
       child: Container(
         padding: EdgeInsets.all(0),
         color: Colors.black,
@@ -68,37 +71,62 @@ class _TripsItemState extends State<TripsItem> {
 
   Widget buildInfo(BuildContext context) {
     return Flexible(
-      child: Column(
-        children: [
-          Container(
-            child: Text(
-              widget.trip.title,
-              style:
-                  GoogleFonts.roboto(fontSize: 18, fontWeight: FontWeight.w400),
+      flex: 2,
+      fit: FlexFit.tight,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: Container(
+                  child: Text(
+                    widget.trip.title,
+                    style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[800]),
+                  ),
+                ),
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              widget.trip.groupName,
-              style:
-                  GoogleFonts.roboto(fontSize: 15, fontWeight: FontWeight.w400),
-            ),
-          )
-        ],
+            Expanded(
+              child: Center(
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "Group:" + widget.trip.groupName,
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget buildTimeInfo(BuildContext context) {
     return Flexible(
+      flex: 1,
+      fit: FlexFit.tight,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            child: Text(widget.trip.date),
+            padding: EdgeInsets.all(2),
+            child: Text(widget.trip.date,
+                style: GoogleFonts.roboto(
+                    fontSize: 15, fontWeight: FontWeight.w400)),
           ),
           Container(
-            child: Text(widget.trip.time),
+            child: Text(widget.trip.time,
+                style: GoogleFonts.roboto(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.deepPurple)),
           )
         ],
       ),
@@ -117,7 +145,7 @@ class TripsList extends StatefulWidget {
 }
 
 class _TripsListState extends State<TripsList> {
-  List<Trip> data;
+  List<Trip> data = [];
   bool _isLoading;
   TripsService get service => GetIt.instance<TripsService>();
   @override
@@ -145,6 +173,7 @@ class _TripsListState extends State<TripsList> {
         builder: (c) {
           if (_isLoading) return CircularProgressIndicator();
           return ListView.builder(
+            itemCount: data.length,
             itemBuilder: (_, index) {
               return TripsItem(data[index]);
             },
