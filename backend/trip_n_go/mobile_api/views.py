@@ -3,11 +3,12 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import TripsSerializer,UsersSerializer,GroupsSerializer,ItemsSerializer
+from .serializers import TripsSerializer,UsersSerializer,GroupsSerializer,ItemsSerializer,UserCreationSerializer
 
 from .modelinfo.trip import Trip,Item,Offer
 from .modelinfo.group import Group
 from .models import User,UserManager
+from .model_form import UserForm
 
 # Create your views here.
 
@@ -43,16 +44,17 @@ def getGroups(request):
 
 @api_view(['Post'])
 def createAccount(request):
-    serializer = UsersSerializer(data = request.data)
+    serializer = UserCreationSerializer(data = request.data)
     print(request.data)
     if serializer.is_valid():
-        User.objects.create_user(
-            email = request.data['email'],
-            password = request.data['password'],
-            phoneNumber = request.data['phoneNumber'],
-            firstName = request.data['firstName'],
-            lastName = request.data['lastName'],
-        )
+        # User.objects.create_user(
+        #     email = request.data['email'],
+        #     password = request.data['password'],
+        #     phoneNumber = request.data['phoneNumber'],
+        #     firstName = request.data['firstName'],
+        #     lastName = request.data['lastName'],
+        # )
+        serializer.save()
         return Response('success')
     
     return Response('failed')
@@ -84,20 +86,16 @@ def createItems(request):
 
 
 @api_view(['Post'])
-def updateAccount(request):
-    serializer = UsersSerializer(data = request.data)
-    print(request.data)
-    if serializer.is_valid():
-        User.objects.create_user(
-            email = request.data['email'],
-            password = request.data['password'],
-            phoneNumber = request.data['phoneNumber'],
-            firstName = request.data['firstName'],
-            lastName = request.data['lastName'],
-        )
+def updateAccount(request, id):
+    try:
+        user = User.objects.get(id = id)
+        form = UserForm(instance=user)
+        form['phoneNumber']=request.data['phoneNumber']
+        form.save()
+
         return Response('success')
-    
-    return Response('failed')
+    except:
+        return Response('failed')
     
 
 @api_view(['Post'])

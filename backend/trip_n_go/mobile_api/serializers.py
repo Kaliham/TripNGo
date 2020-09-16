@@ -54,7 +54,17 @@ class FriendsSerializer(serializers.ModelSerializer):
         fields = ('user','friends')
 
 class UserCreationSerializer(serializers.ModelSerializer):
-
+    password = serializers.CharField(write_only=True)
     class Meta:
         model = User
         fields = ('email','phoneNumber','firstName','lastName','active','staff','admin','password')
+    def create(self, validated_data):
+        user =User.objects.create_user(
+            email = validated_data['email'],
+            password = validated_data['password'],
+            phoneNumber = validated_data['phoneNumber'],
+            firstName = validated_data['firstName'],
+            lastName = validated_data['lastName'],
+        )
+        user.save()
+        return user
